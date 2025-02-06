@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    #first-set * {
+      margin-bottom: 10px;
+    }
+  </style>
+  <body>
+    <div style="display: flex; align-items: center; gap: 1rem">
+      <h1 style="display: block">Music Lover's Survey</h1>
+      <a
+        href="https://images.unsplash.com/photo-1565656898731-61d5df85f9a7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      >
+        <img
+          style="max-width: 200px"
+          src="https://images.unsplash.com/photo-1565656898731-61d5df85f9a7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        />
+      </a>
+    </div>
+    <form border="1" action="">
+      <!-- field set to differentiate the first part and second part of the form -->
+      <fieldset id="first-set">
+        <legend>Music Lover's Personal Information</legend>
+        <!-- Input type text, id matches  -->
+        <label for="fname"
+          >First Name: <input type="text" id="fname" name="fname"
+        /></label>
+
+        <br />
+        <label for="lname">Family Name:</label>
+        <input type="text" id="lname" name="lname" />
+        <br />
+
+        <!-- Input type radio for multiple choice, they both have the same name -->
+        <label for="gender">Gender:</label>
+        <label>
+          <input type="radio" name="gender" value="female" /> Female
+        </label>
+
+        <label> <input type="radio" name="gender" value="male" /> Male </label>
+        <br />
+
+        <!-- Input type select name genre  -->
+        <label for="age-category">What age category are you from?</label>
+        <select name="genre" id="genre">
+          <option value="less-than-18">Less than 18</option>
+          <option value="18-to-24">18 - 24</option>
+          <option value="25-to-30">25-30</option>
+          <option value="31-40">31-40</option>
+          <option value="41-50">41-50</option>
+          <option value="51-60">51-60</option>
+          <option value="61-or-more">More than 61</option>
+        </select>
+
+        <br />
+        <!-- Input type email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" />
+      </fieldset>
+
+      <br />
+      <fieldset id="second-set">
+        <legend>Survey Questions</legend>
+        <label style="margin-top: 20px; display: block">
+          Which type of music do you listen to? (Pick as many as apply)
+        </label>
+        <div>
+          <label>
+            <input type="checkbox" name="musicTypes" value="blues" /> Blues
+          </label>
+          <label>
+            <input type="checkbox" name="musicTypes" value="classical" />
+            Classical</label
+          >
+          <label>
+            <input type="checkbox" name="musicTypes" value="electronic" />
+            Electronic
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <input type="checkbox" name="musicTypes" value="HipHop" /> Hip
+            Hop/Rap
+          </label>
+          <label>
+            <input type="checkbox" name="musicTypes" value="Pop" /> Pop
+          </label>
+          <label>
+            <input type="checkbox" name="musicTypes" value="Reggae" /> Reggae
+          </label>
+        </div>
+        <label>
+          <input type="checkbox" name="musicTypes" value="Other" /> Other
+        </label>
+
+        <label style="margin-top: 20px; display: block">
+          List your 3 favorite artist/bands:</label
+        >
+        <label for="bands"
+          ><input id="band-1" type="text" />
+          <input id="band-2" type="text" />
+          <input id="band-3" type="text"
+        /></label>
+
+        <label style="margin-top: 20px; display: block">
+          If you were to win tickets which show would you like 2 tickets to?
+        </label>
+
+        <label>
+          <input type="radio" name="winTicket" value="brit-floyd" /> BRIT FLOYD
+          (March 24, 2016)
+        </label>
+        <label>
+          <input type="radio" name="winTicket" value="iron-maiden" /> IRON
+          MAIDEN (April 1, 2016)
+        </label>
+        <label>
+          <input type="radio" name="winTicket" value="janet-jackson" /> JANET
+          JACKSON (June 17, 2016)
+        </label>
+        <label>
+          <input type="radio" name="winTicket" value="adele" /> ADELE (September
+          30, 2016)
+        </label>
+      </fieldset>
+      <p>Thank you for taking the time to fill out our servey!</p>
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form>
+  </body>
+</html>
