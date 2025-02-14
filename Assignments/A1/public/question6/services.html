@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      padding: 10px;
+    }
+    h1,
+    p {
+      margin: 2rem 0;
+    }
+    nav {
+      width: 130px;
+    }
+    nav ul {
+      list-style-type: none;
+    }
+    nav ul li {
+      background-color: #e7e5e5;
+    }
+    nav ul li a {
+      text-decoration: none;
+      /* color: rgb(20, 19, 19); */
+      /* color: #d8cfcf; */
+    }
+    nav ul li.active {
+      background-color: green;
+    }
+    nav ul li.active a {
+      color: white;
+    }
+    nav ul li:hover:not(.active) {
+      color: white;
+      background-color: #333;
+    }
+    nav ul li a {
+      color: black;
+    }
+    nav ul li:hover:not(.active) * {
+      color: white;
+    }
+    a {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <h1>Vertical Navigation Bar</h1>
+    <p>"Services" is the current page. There are four menu items.</p>
+
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="active"><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
