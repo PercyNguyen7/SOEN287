@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q4-40180660</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body style="padding: 1rem">
+    <h1>Order Books Online</h1>
+    <form
+      id="orderForm"
+      style="border: 1px black solid; width: min-content; padding: 1rem"
+    >
+      <table>
+        <tr>
+          <th>Book</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>
+            <label for="quantity1" style="white-space: nowrap"
+              >Basic Web Programming</label
+            >
+          </td>
+          <td>
+            <input type="number" id="quantity1" name="quantity1" min="0" />
+          </td>
+          <td>$19.99</td>
+        </tr>
+        <tr>
+          <td>
+            <label for="quantity2" style="white-space: nowrap"
+              >Intro to PHP</label
+            >
+          </td>
+          <td>
+            <input type="number" id="quantity2" name="quantity2" min="0" />
+          </td>
+          <td>$86.00</td>
+        </tr>
+        <tr>
+          <td>
+            <label for="quantity3" style="white-space: nowrap"
+              >Advanced JQuery</label
+            >
+          </td>
+          <td>
+            <input type="number" id="quantity3" name="quantity3" min="0" />
+          </td>
+          <td>$55.00</td>
+        </tr>
+      </table>
+      <button>Calculate the Order</button>
+    </form>
+    <div id="result"></div>
+    <script src="./js/question4.js"></script>
+  </body>
+</html>

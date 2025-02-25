@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      #first-set * {
+        margin-bottom: 10px;
+      }
+    </style>
   </head>
-  <style>
-    #first-set * {
-      margin-bottom: 10px;
-    }
-  </style>
+
   <body>
     <div style="display: flex; align-items: center; gap: 1rem">
       <h1 style="display: block">Music Lover's Survey</h1>
@@ -23,7 +24,7 @@
         />
       </a>
     </div>
-    <form border="1" action="">
+    <form action="#">
       <!-- field set to differentiate the first part and second part of the form -->
       <fieldset id="first-set">
         <legend>Music Lover's Personal Information</legend>
@@ -38,7 +39,7 @@
         <br />
 
         <!-- Input type radio for multiple choice, they both have the same name -->
-        <label for="gender">Gender:</label>
+        <label>Gender:</label>
         <label>
           <input type="radio" name="gender" value="female" /> Female
         </label>
@@ -48,7 +49,7 @@
 
         <!-- Input type select name genre  -->
         <label for="age-category">What age category are you from?</label>
-        <select name="genre" id="genre">
+        <select name="age-category" id="age-category">
           <option value="less-than-18">Less than 18</option>
           <option value="18-to-24">18 - 24</option>
           <option value="25-to-30">25-30</option>
@@ -103,11 +104,9 @@
         <label style="margin-top: 20px; display: block">
           List your 3 favorite artist/bands:</label
         >
-        <label for="bands"
-          ><input id="band-1" type="text" />
-          <input id="band-2" type="text" />
-          <input id="band-3" type="text"
-        /></label>
+        <input id="band-1" type="text" />
+        <input id="band-2" type="text" />
+        <input id="band-3" type="text" />
 
         <label style="margin-top: 20px; display: block">
           If you were to win tickets which show would you like 2 tickets to?

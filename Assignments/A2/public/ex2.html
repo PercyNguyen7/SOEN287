@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 2 - 40180660</title>
+  </head>
+  <body>
+    <h1>JavaScript Array</h1>
+    <h2>Print the elements of an array using toString()</h2>
+    <p id="para1"></p>
+
+    <h2>Print the elements of an array using join()</h2>
+    <p id="para2"></p>
+    <h2>Print the elements of an array using toString()</h2>
+    <p id="para3" style="white-space: pre-line"></p>
+    <script>
+      const fruits = ["Banana", "Orange", "Apple", "Mango"];
+      const changePara1 = function () {
+        const para1 = document.querySelector("#para1");
+        para1.textContent = fruits.toString();
+      };
+      const changePara2 = function () {
+        const para2 = document.querySelector("#para2");
+        para2.textContent = fruits.join("&");
+      };
+      const changePara3 = function () {
+        let str = "";
+        let count = 0;
+        fruits.forEach((fruit) => {
+          str += count + ": " + fruit + `\n`;
+          count++;
+        });
+
+        const para3 = document.querySelector("#para3");
+        para3.textContent = str;
+      };
+      changePara1();
+      changePara2();
+      changePara3();
+    </script>
+  </body>
+</html>

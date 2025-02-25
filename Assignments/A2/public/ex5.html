@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Exercise 5 - 40180660</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <p><strong>User Information:</strong></p>
+    <div id="content"></div>
+    <script>
+      function welcomePopUp() {
+        let text;
+        let userFullName = prompt("What is your full name:");
+        while (userFullName == null || userFullName == "") {
+          userFullName = prompt("We must know your full name:");
+        }
+        let userAge = prompt("How old are you?");
+        while (userAge == null || userAge == "") {
+          userAge = prompt("We must know your age:");
+        }
+        document.querySelector(
+          "#content"
+        ).innerHTML = `Hi, my name is ${userFullName} and I'm ${userAge} years old`;
+      }
+      welcomePopUp();
+    </script>
+  </body>
+</html>
