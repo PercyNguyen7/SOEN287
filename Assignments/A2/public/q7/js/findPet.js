@@ -1,11 +1,16 @@
 "use strict";
 
-const formPetCatRadio = document.getElementById("find-cat-radio");
-const formPetDogRadio = document.getElementById("find-dog-radio");
+const formPetCatRadio = document.getElementById("form-find-cat-radio");
+const formPetDogRadio = document.getElementById("form-find-dog-radio");
+
 if (formPetCatRadio) {
   formPetCatRadio.addEventListener("change", function (event) {
-    const dogBreedSelect = document.getElementById("find-dog-breed-select");
-    const catBreedSelect = document.getElementById("find-cat-breed-select");
+    const dogBreedSelect = document.getElementById(
+      "form-find-dog-breed-select"
+    );
+    const catBreedSelect = document.getElementById(
+      "form-find-cat-breed-select"
+    );
     dogBreedSelect.style.opacity = "0.5";
     dogBreedSelect.style.pointerEvents = "none";
     if (catBreedSelect.style.opacity === "0.5") {
@@ -14,10 +19,16 @@ if (formPetCatRadio) {
     }
   });
 }
+
+const findPetForm = document.getElementById("findPetForm");
 if (formPetDogRadio) {
   formPetDogRadio.addEventListener("change", function (event) {
-    const dogBreedSelect = document.getElementById("find-dog-breed-select");
-    const catBreedSelect = document.getElementById("find-cat-breed-select");
+    const dogBreedSelect = document.getElementById(
+      "form-find-dog-breed-select"
+    );
+    const catBreedSelect = document.getElementById(
+      "form-find-cat-breed-select"
+    );
     catBreedSelect.style.opacity = "0.5";
     catBreedSelect.style.pointerEvents = "none";
     if (dogBreedSelect.style.opacity === "0.5") {
@@ -26,11 +37,9 @@ if (formPetDogRadio) {
     }
   });
 
-  const findPetForm = document.getElementById("findPetForm");
-
   findPetForm.addEventListener("submit", function (event) {
     let arrayPetInfo = [];
-    if (!verifyAgeRange()) {
+    if (!ageRangeVerified()) {
       alert("Min age value must be lower than max age value");
       event.preventDefault();
     } else {
@@ -38,13 +47,65 @@ if (formPetDogRadio) {
   });
 }
 
-function verifyAgeRange() {
-  const minAge = document.querySelector("#find-min-age");
+export function ageRangeVerified() {
+  const minAge = document.querySelector("#form-find-min-age");
   let minAgeValue = minAge.value;
-  const maxAge = document.querySelector("#find-max-age");
+  const maxAge = document.querySelector("#form-find-max-age");
   let maxAgeValue = maxAge.value;
   if (minAgeValue > maxAgeValue) {
     return false;
   }
   return true;
+}
+
+const browseContainer = document.querySelector(".browse-pets-container");
+
+if (browseContainer) {
+  const petDiv = document.createElement("div");
+  petDiv.innerHTML = `<figure
+                class="rounded-t-lg overflow-hidden flex items-center aspect-[1/1]"
+              >
+                <img
+                  class="rounded-t-lg"
+                  src="https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="product image"
+                />
+              </figure>
+              <div class="px-5 pb-5 py-2 text-center">
+                <h5
+                  class="text-3xl font-semibold tracking-tight text-slate-700 righteous-regular"
+                >
+                  Tummee
+                </h5>
+                <ul
+                  class="[&>*]:inline-block [&>*]:pl-3 [&>*]:before:content [&>*]:before:right-2 [&>*]:before:relative [&>*]:before:content-['•'] [&>*]:before:text-orange-400"
+                >
+                  <li class="text-slate-700 nunito-sans-regular">Dog</li>
+  
+                  <li class="text-slate-700 nunito-sans-regular">
+                    Cocker Spaniel
+                  </li>
+  
+                  <li class="text-slate-700 nunito-sans-regular">Male</li>
+  
+                  <li class="text-slate-700 nunito-sans-regular">2 yrs old</li>
+  
+                  <li class="text-slate-700 nunito-sans-regular">Friendly</li>
+                </ul>
+                <div class="flex items-center justify-center">
+                  <button
+                    class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg px-3 py-2 text-center text-lg mt-2"
+                  >
+                    Interested
+                  </button>
+                </div>
+              </div>`;
+  petDiv.classList.add(
+    "bg-amber-50",
+    "rounded-lg",
+    "border-1",
+    "shadow-sm",
+    "border-orange-200"
+  );
+  browseContainer.appendChild(petDiv);
 }

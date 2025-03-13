@@ -1,5 +1,6 @@
+// import findPet.js logic and execute it
 import "./findPet.js";
-
+import "./givePet.js";
 setInterval(updateTime, 1000);
 updateTime();
 function updateTime() {

@@ -308,38 +308,37 @@
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="find-cat-radio"
-                name="find-type"
+                id="form-find-cat-radio"
+                name="form-find-type"
                 value="cat"
                 required
               />
-              <label for="petChoiceCat">Cat</label>
+              <label for="form-find-cat-radio">Cat</label>
             </div>
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="find-dog-radio"
-                name="find-type"
+                id="form-find-dog-radio"
+                name="form-find-type"
                 value="dog"
               />
-              <label for="petChoiceDog">Dog</label>
+              <label for="form-find-dog-radio">Dog</label>
             </div>
           </div>
 
           <div class="form-group overflow-auto">
-            <label for="dog-breed" class="font-semibold"
+            <label for="form-find-dog-breed-select" class="font-semibold"
               >Choose a dog breed:</label
             >
             <select
-              name="dog-breed"
-              id="find-dog-breed-select"
+              name="form-find-dog-breed-select"
+              id="form-find-dog-breed-select"
               class="p-1 bg-white lg:w-60"
             >
               <option value="frenchBulldog">French Bulldog</option>
               <option value="labradorRetriever">Labrador Retriever</option>
               <option value="goldenRetriever">Golden Retriever</option>
               <option value="germanShepherd">German Shepherd</option>
-
               <option value="poodle">Poodle</option>
               <option value="dm">All</option>
             </select>
@@ -348,7 +347,7 @@
             <label class="font-semibold">Choose a cat breed:</label>
             <select
               name="cat-breed"
-              id="find-cat-breed-select"
+              id="form-find-cat-breed-select"
               class="p-1 bg-white"
             >
               <option value="ragdoll">Ragdoll</option>
@@ -362,30 +361,31 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="inline font-semibold">Age Range:</label>
+            <label class="inline font-semibold">Age Range (0-20):</label>
             <div class="my-2 inline">
-              <label for="find-min-age">Min</label>
+              <label for="form-find-min-age">Min</label>
 
               <input
                 type="number"
-                name="find-min-age"
-                id="find-min-age"
+                name="form-find-min-age"
+                id="form-find-min-age"
                 placeholder="1"
                 min="0"
-                class="py-0 bg-white w-20"
+                max="20"
+                class="py-0 bg-white w-20 number-inputs"
                 required
               />
             </div>
             <div class="my-2 inline">
-              <label for="min-age">Max</label>
+              <label for="form-find-max-age">Max</label>
               <input
                 type="number"
-                name="find-max-age"
-                id="find-max-age"
+                name="form-find-max-age"
+                id="form-find-max-age"
                 placeholder="20"
                 min="0"
                 max="20"
-                class="py-0 bg-white w-20"
+                class="py-0 bg-white w-20 number-inputs"
                 required
               />
             </div>
@@ -396,80 +396,59 @@
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="find-pet-gender-male"
-                name="find-pet-gender"
+                id="form-find-pet-gender-male"
+                name="form-find-pet-gender"
                 value="male"
                 required
               />
-              <label for="find-pet-gender-male">Male</label>
+              <label for="form-find-pet-gender-male">Male</label>
             </div>
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="find-pet-gender-female"
-                name="find-pet-gender"
+                id="form-find-pet-gender-female"
+                name="form-find-pet-gender"
                 value="female"
               />
-              <label for="find-pet-gender-female">Female</label>
+              <label for="form-find-pet-gender-female">Female</label>
             </div>
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="find-pet-gender-either"
-                name="find-pet-gender"
+                id="form-find-pet-gender-either"
+                name="form-find-pet-gender"
                 value="either"
               />
-              <label for="genderEither">Either</label>
+              <label for="form-find-pet-gender-either">Either</label>
             </div>
           </div>
           <div class="form-group">
-            <label class="font-semibold">Get along with:</label>
-            <div class="inline pl-2">
+            <label class="font-semibold">Get along with</label>
+
+            <div>
               <input
-                type="radio"
-                id="find-pet-friendly-dogs"
-                name="getAlong"
-                value="dogs"
-                required
+                type="checkbox"
+                id="form-find-get-along-dog"
+                name="form-find-get-along"
               />
-              <label for="find-pet-friendly-dogs" class="inline">Dogs</label>
-            </div>
-            <div class="inline pl-2">
-              <input
-                type="radio"
-                id="find-pet-friendly-cats"
-                name="getAlong"
-                value="cats"
-              />
-              <label for="find-pet-friendly-cats">Cats</label>
-            </div>
-            <div class="inline pl-2">
-              <input
-                type="radio"
-                id="find-pet-friendly-children"
-                name="getAlong"
-                value="either"
-              />
-              <label for="find-pet-friendly-children">Children</label>
+              <label for="form-find-get-along-dog">Dog</label>
             </div>
 
-            <div class="inline pl-2">
+            <div>
               <input
-                type="radio"
-                id="find-pet-friendly-everyone"
-                name="getAlong"
-                value="either"
+                type="checkbox"
+                id="form-find-get-along-cat"
+                name="form-find-get-along"
               />
-              <label for="find-pet-friendly-everyone">Everyone</label>
+              <label for="form-find-get-along-cat">Cat</label>
             </div>
-            <div class="inline pl-2">
+            <div>
               <input
-                type="radio"
-                id="find-pet-friendly-na"
-                name="getAlong"
-                value="either"
+                type="checkbox"
+                id="form-find-get-along-children"
+                name="form-find-get-along"
               />
-              <label for="find-pet-friendly-na">Not Necessary</label>
+              <label for="form-find-get-along-children">Children</label>
             </div>
           </div>
           <button

@@ -953,6 +953,9 @@ html {
   .w-20 {
     width: calc(var(--spacing) * 20);
   }
+  .w-30 {
+    width: calc(var(--spacing) * 30);
+  }
   .w-35 {
     width: calc(var(--spacing) * 35);
   }
@@ -3151,11 +3154,47 @@ html {
       }
     }
   }
+  .\[\&\>\*\]\:before\:content-\[\'2022\'\] {
+    &>* {
+      &::before {
+        content: var(--tw-content);
+        --tw-content: '2022';
+        content: var(--tw-content);
+      }
+    }
+  }
   .\[\&\>\*\]\:before\:content-\[\'\\2022\'\] {
     &>* {
       &::before {
         content: var(--tw-content);
         --tw-content: '\2022';
+        content: var(--tw-content);
+      }
+    }
+  }
+  .\[\&\>\*\]\:before\:content-\[\'\\x822022\'\] {
+    &>* {
+      &::before {
+        content: var(--tw-content);
+        --tw-content: '\x822022';
+        content: var(--tw-content);
+      }
+    }
+  }
+  .\[\&\>\*\]\:before\:content-\[\'hey\'\] {
+    &>* {
+      &::before {
+        content: var(--tw-content);
+        --tw-content: 'hey';
+        content: var(--tw-content);
+      }
+    }
+  }
+  .\[\&\>\*\]\:before\:content-\[\'•\'\] {
+    &>* {
+      &::before {
+        content: var(--tw-content);
+        --tw-content: '•';
         content: var(--tw-content);
       }
     }

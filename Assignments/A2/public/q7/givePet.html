@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PawsVille - GivePet</title>
+    <title>PawsVille - Give Pet</title>
     <link
       href="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.css"
       rel="stylesheet"
@@ -301,154 +301,192 @@
           class="border-1 border-orange-200 rounded-md bg-orange-50 text-orange-600 p-5 my-3 md:p-10 [&>*]:mb-4"
         >
           <div class="form-group">
-            <label class="inline font-semibold">Pet Name:</label>
+            <label class="inline font-semibold" for="form-give-pet-name"
+              >Pet Name:</label
+            >
 
             <input
               type="text"
-              id="givePet-petName"
-              name="givePet-petName"
-              placeholder="Max"
+              id="form-give-pet-name"
+              name="form-give-pet-name"
+              placeholder="Charlie"
               class="p-0"
+              maxlength="20"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
             />
           </div>
           <div class="form-group">
-            <p class="inline font-semibold">Pet Type:</p>
+            <label class="inline font-semibold" for="form-give-pet-type-cat"
+              >Pet Type:</label
+            >
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="petChoiceCat"
-                name="petType"
+                id="form-give-pet-type-cat"
+                name="form-give-pet-type"
                 value="cat"
+                required
               />
-              <label for="givePetChoiceCat">Cat</label>
+              <label for="form-give-pet-type-cat">Cat</label>
             </div>
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="petChoiceDog"
-                name="petType"
+                id="form-give-pet-type-dog"
+                name="form-give-pet-type"
                 value="dog"
               />
-              <label for="givePetChoiceDog">Dog</label>
+              <label for="form-give-pet-type-dog">Dog</label>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="givePetBreed" class="font-semibold"
+            <label for="form-give-pet-breed" class="font-semibold"
               >Your pet breed:</label
             >
             <input
               type="text"
-              id="givePetBreed"
-              value=""
+              id="form-give-pet-breed"
               class="p-0"
               placeholder="golden retriever"
+              maxlength="22"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
             />
           </div>
 
           <div class="form-group">
-            <label class="inline font-semibold">Age Range:</label>
+            <label class="inline font-semibold">Age Range (0-20):</label>
             <div class="my-2 inline">
-              <label for="givePetMinAge">Min </label>
-
+              <label for="form-give-pet-min-age">Min </label>
               <input
                 type="number"
-                name="givePetMinAge"
-                id=""
+                name="form-give-pet-min-age"
+                id="form-give-pet-min-age"
                 placeholder="1"
                 min="0"
-                class="py-0 bg-white w-20"
+                max="20"
+                class="py-0 bg-white w-20 number-inputs"
+                required
               />
             </div>
             <div class="my-2 inline">
-              <label for="givePetMaxAge">Max </label>
+              <label for="form-give-pet-max-age">Max </label>
               <input
                 type="number"
-                name="givePetMaxAge"
-                id="givePetMaxAge"
+                name="form-give-pet-max-age"
+                id="form-give-pet-max-age"
+                min="0"
                 placeholder="20"
                 max="20"
-                class="py-0 bg-white w-20"
+                class="py-0 bg-white w-20 number-inputs"
+                required
               />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="font-semibold">Gender:</label>
+            <label class="font-semibold" for="form-give-pet-gender-male"
+              >Gender:</label
+            >
             <div class="inline pl-2">
-              <input type="radio" id="genderMale" name="gender" value="male" />
-              <label for="genderMale">Male</label>
+              <input
+                type="radio"
+                id="form-give-pet-gender-male"
+                name="form-give-pet-gender"
+                value="male"
+              />
+              <label for="form-give-pet-gender-male">Male</label>
             </div>
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="genderFemale"
-                name="gender"
+                id="form-give-pet-gender-female"
+                name="form-give-pet-gender"
                 value="female"
               />
-              <label for="genderFemale">Female</label>
+              <label for="form-give-pet-gender-female">Female</label>
             </div>
           </div>
           <div class="form-group">
-            <label class="font-semibold">Get along with</label>
+            <p class="font-semibold">Get along with</p>
+
             <div>
-              <input type="checkbox" id="dog" name="dog" />
-              <label for="scales">Dog</label>
+              <input
+                type="checkbox"
+                id="form-give-pet-get-along-dogs"
+                name="form-give-pet-get-along"
+              />
+              <label for="form-give-pet-get-along-dogs">Dogs</label>
             </div>
 
             <div>
-              <input type="checkbox" id="cat" name="cats" />
-              <label for="horns">Cat</label>
+              <input
+                type="checkbox"
+                id="form-give-pet-get-along-cats"
+                name="form-give-pet-get-along"
+              />
+              <label for="form-give-pet-get-along-cats">Cats</label>
             </div>
             <div>
-              <input type="checkbox" id="children" name="children" />
-              <label for="children">Children</label>
+              <input
+                type="checkbox"
+                id="form-give-pet-get-along-children"
+                name="form-give-pet-get-along"
+              />
+              <label for="form-give-pet-get-along-children">Children</label>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="font-semibold">Special Note:</label>
+            <label class="font-semibold">Any note about your pet:</label>
 
             <textarea
               class="p-0 block w-full bg-white"
               rows="5"
-              id="givePet-comment"
+              id="form-give-pet-comment"
               placeholder="allergies, behaviors, anything important"
-              name="givePet-comment"
+              name="form-give-pet-comment"
+              required
             >
             </textarea>
           </div>
 
           <div class="form-group">
             <label class="block font-semibold">Owner's Name:</label>
-            <label class="inline p-0" for="givePet-fName">First:</label>
+            <label class="inline p-0" for="form-give-owner-fname">First:</label>
             <input
               type="text"
               class="p-0"
-              ="givePet-fName"
-              name="givePet-fName"
+              id="form-give-owner-fname"
+              name="form-give-owner-fname"
               placeholder="Jane"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
             />
 
-            <label class="inline p-0" for="givePet-lName">Last:</label>
+            <label class="inline p-0" for="form-give-owner-lname">Last:</label>
 
             <input
               type="text"
               class="p-0"
-              ="givePet-lName"
-              name="givePet-lName"
+              id="form-give-owner-lname"
+              name="form-give-owner-lname"
               placeholder="Doe"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
             />
           </div>
           <div class="form-group">
             <label class="block font-semibold">Owner's Email:</label>
-
             <input
-              type="text"
+              type="email"
               class="p-0"
               id="givePet-email"
-              name="givePet-lName"
+              name="form-give-owner-email"
               placeholder="email@gmail.com"
+              required
             />
           </div>
           <button
@@ -458,7 +496,7 @@
             Submit
           </button>
           <button
-            type="clear"
+            type="reset"
             class="cursor-pointer border-1 rounded-md px-5 py-2 text-center bg-white"
           >
             Clear
