@@ -27,9 +27,7 @@
 
   <!-- As I have already designed responsive website in CSS before, I'm opting to learn Tailwind CSS, and hence exploring Flowbite templates -->
   <body class="bg-orange-100">
-    <nav
-      class="fixed top-0 z-50 w-full bg-orange-700 dark:bg-orange-700/85 backdrop-blur-md"
-    >
+    <nav class="fixed top-0 z-50 w-full bg-orange-700 backdrop-blur-md">
       <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
         <div class="bg-orange-300 h-1 progress-bar"></div>
       </div>
@@ -79,7 +77,7 @@
       class="fixed top-0 left-0 z-40 w-64 sm:w-50 xl:w-70 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-orange-50 dark:border-orange-200"
       aria-label="Sidebar"
     >
-      <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-50">
+      <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-orange-50">
         <ul class="space-y-2 font-medium">
           <li>
             <a
@@ -297,9 +295,7 @@
         <header>
           <p class="time text-slate-700 nunito-sans-regular"></p>
         </header>
-        <div
-          class="flex flex-col lg:flex-row items-center justify-center w-full"
-        >
+        <div class="lg:flex lg:flex-row items-center justify-center w-full">
           <div class="text-center lg:text-left">
             <h1 class="">
               <span
@@ -312,9 +308,11 @@
                 >PawsVille</span
               >
             </h1>
-            <h3 class="h3-style">Adopt your next companion here!</h3>
+            <h3 class="h3-style mb-3.5 py-2">
+              Adopt your next companion here!
+            </h3>
             <a
-              class="mt-5 bg-white border-2 border-orange-200 text-2xl text-orange-400 p-3 rounded-xl py-3 px-5 border-box font-semibold"
+              class="bg-white border-2 border-orange-200 text-2xl text-orange-400 rounded-xl py-3 px-5 font-semibold mt-1 inline-block"
               href="browsePets.html"
             >
               Browse Pets

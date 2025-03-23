@@ -1,5 +1,5 @@
 "use strict";
-
+import { pets } from "./pets.js";
 const formPetCatRadio = document.getElementById("form-find-cat-radio");
 const formPetDogRadio = document.getElementById("form-find-dog-radio");
 
@@ -61,13 +61,14 @@ export function ageRangeVerified() {
 const browseContainer = document.querySelector(".browse-pets-container");
 
 if (browseContainer) {
-  const petDiv = document.createElement("div");
-  petDiv.innerHTML = `<figure
+  for (let pet of pets) {
+    const petDiv = document.createElement("div");
+    petDiv.innerHTML = `<figure
                 class="rounded-t-lg overflow-hidden flex items-center aspect-[1/1]"
               >
                 <img
                   class="rounded-t-lg"
-                  src="https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="${pet.img_url}"
                   alt="product image"
                 />
               </figure>
@@ -75,22 +76,28 @@ if (browseContainer) {
                 <h5
                   class="text-3xl font-semibold tracking-tight text-slate-700 righteous-regular"
                 >
-                  Tummee
+                  ${pet.name}
                 </h5>
                 <ul
                   class="[&>*]:inline-block [&>*]:pl-3 [&>*]:before:content [&>*]:before:right-2 [&>*]:before:relative [&>*]:before:content-['•'] [&>*]:before:text-orange-400"
                 >
-                  <li class="text-slate-700 nunito-sans-regular">Dog</li>
+                  <li class="text-slate-700 nunito-sans-regular"> ${
+                    pet.type
+                  }</li>
   
                   <li class="text-slate-700 nunito-sans-regular">
-                    Cocker Spaniel
+                     ${pet.breed}
                   </li>
   
-                  <li class="text-slate-700 nunito-sans-regular">Male</li>
+                  <li class="text-slate-700 nunito-sans-regular"> ${
+                    pet.gender
+                  }</li>
   
-                  <li class="text-slate-700 nunito-sans-regular">2 yrs old</li>
+                  <li class="text-slate-700 nunito-sans-regular"> ${
+                    pet.age
+                  } yrs old</li>
   
-                  <li class="text-slate-700 nunito-sans-regular">Friendly</li>
+                  <li class="text-slate-700 nunito-sans-regular"> ${pet.friendliness()}</li>
                 </ul>
                 <div class="flex items-center justify-center">
                   <button
@@ -100,12 +107,13 @@ if (browseContainer) {
                   </button>
                 </div>
               </div>`;
-  petDiv.classList.add(
-    "bg-amber-50",
-    "rounded-lg",
-    "border-1",
-    "shadow-sm",
-    "border-orange-200"
-  );
-  browseContainer.appendChild(petDiv);
+    petDiv.classList.add(
+      "bg-amber-50",
+      "rounded-lg",
+      "border-1",
+      "shadow-sm",
+      "border-orange-200"
+    );
+    browseContainer.appendChild(petDiv);
+  }
 }

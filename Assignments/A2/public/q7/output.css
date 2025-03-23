@@ -752,14 +752,14 @@ html {
   .me-3 {
     margin-inline-end: calc(var(--spacing) * 3);
   }
+  .mt-1 {
+    margin-top: calc(var(--spacing) * 1);
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
-  }
-  .mt-5 {
-    margin-top: calc(var(--spacing) * 5);
   }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
@@ -778,6 +778,9 @@ html {
   }
   .mb-3 {
     margin-bottom: calc(var(--spacing) * 3);
+  }
+  .mb-3\.5 {
+    margin-bottom: calc(var(--spacing) * 3.5);
   }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
@@ -925,9 +928,6 @@ html {
   }
   .min-h-screen {
     min-height: 100vh;
-  }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -1730,9 +1730,6 @@ html {
   .bg-orange-700 {
     background-color: var(--color-orange-700);
   }
-  .bg-orange-700\/85 {
-    background-color: color-mix(in oklab, var(--color-orange-700) 85%, transparent);
-  }
   .bg-red-500 {
     background-color: var(--color-red-500);
   }
@@ -1922,9 +1919,6 @@ html {
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
-  }
-  .p-3 {
-    padding: calc(var(--spacing) * 3);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -2853,6 +2847,11 @@ html {
   .lg\:bottom-30 {
     @media (width >= 64rem) {
       bottom: calc(var(--spacing) * 30);
+    }
+  }
+  .lg\:flex {
+    @media (width >= 64rem) {
+      display: flex;
     }
   }
   .lg\:h-70 {
