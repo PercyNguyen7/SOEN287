@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PawsVille - Give Pet</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="output.css" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://img.freepik.com/free-vector/pet-logo-design-paw-vector-animal-shop-business_53876-136741.jpg?t=st=1738955431~exp=1738959031~hmac=5c28fcd03f680b62373646de289ad7d20435837a946947eee8ae3384ae07ba6d&w=826"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Londrina+Solid:wght@100;300;400;900&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <!-- As I have already designed responsive website in CSS before, I'm opting to learn Tailwind CSS, and hence exploring Flowbite templates -->
+  <body class="bg-orange-100">
+    <%- include('./templates/header'); %> <%- include('./templates/aside'); %>
+
+    <div class="sm:ml-50 xl:ml-70 p-5">
+      <div
+        class="p-4 border-gray-200 min-h-screen border-dashed rounded-lg dark:border-gray-700 mt-14"
+      >
+        <header>
+          <p class="time text-slate-700 nunito-sans-regular"></p>
+        </header>
+        <h1 class="h1-style">Give Away Your Pet</h1>
+        <h3 class="h3-style">
+          Please fill in submit the form to begin the process
+        </h3>
+        <form
+          class="border-1 border-orange-200 rounded-md bg-orange-50 text-orange-600 p-5 my-3 md:p-10 [&>*]:mb-4"
+        >
+          <div class="form-group">
+            <label class="inline font-semibold" for="form-give-pet-name"
+              >Pet Name:</label
+            >
+
+            <input
+              type="text"
+              id="form-give-pet-name"
+              name="form-give-pet-name"
+              placeholder="Charlie"
+              class="p-0"
+              maxlength="20"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="inline font-semibold" for="form-give-pet-type-cat"
+              >Pet Type:</label
+            >
+            <div class="inline pl-2">
+              <input
+                type="radio"
+                id="form-give-pet-type-cat"
+                name="form-give-pet-type"
+                value="cat"
+                required
+              />
+              <label for="form-give-pet-type-cat">Cat</label>
+            </div>
+            <div class="inline pl-2">
+              <input
+                type="radio"
+                id="form-give-pet-type-dog"
+                name="form-give-pet-type"
+                value="dog"
+              />
+              <label for="form-give-pet-type-dog">Dog</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="form-give-pet-breed" class="font-semibold"
+              >Your pet breed:</label
+            >
+            <input
+              type="text"
+              id="form-give-pet-breed"
+              class="p-0"
+              placeholder="golden retriever"
+              maxlength="22"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="inline font-semibold">Age Range (0-20):</label>
+            <div class="my-2 inline">
+              <label for="form-give-pet-min-age">Min </label>
+              <input
+                type="number"
+                name="form-give-pet-min-age"
+                id="form-give-pet-min-age"
+                placeholder="1"
+                min="0"
+                max="20"
+                class="py-0 bg-white w-20 number-inputs"
+                required
+              />
+            </div>
+            <div class="my-2 inline">
+              <label for="form-give-pet-max-age">Max </label>
+              <input
+                type="number"
+                name="form-give-pet-max-age"
+                id="form-give-pet-max-age"
+                min="0"
+                placeholder="20"
+                max="20"
+                class="py-0 bg-white w-20 number-inputs"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="font-semibold" for="form-give-pet-gender-male"
+              >Gender:</label
+            >
+            <div class="inline pl-2">
+              <input
+                type="radio"
+                id="form-give-pet-gender-male"
+                name="form-give-pet-gender"
+                value="male"
+              />
+              <label for="form-give-pet-gender-male">Male</label>
+            </div>
+            <div class="inline pl-2">
+              <input
+                type="radio"
+                id="form-give-pet-gender-female"
+                name="form-give-pet-gender"
+                value="female"
+              />
+              <label for="form-give-pet-gender-female">Female</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <p class="font-semibold">Get along with</p>
+
+            <div>
+              <input
+                type="checkbox"
+                id="form-give-pet-get-along-dogs"
+                name="form-give-pet-get-along"
+              />
+              <label for="form-give-pet-get-along-dogs">Dogs</label>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                id="form-give-pet-get-along-cats"
+                name="form-give-pet-get-along"
+              />
+              <label for="form-give-pet-get-along-cats">Cats</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="form-give-pet-get-along-children"
+                name="form-give-pet-get-along"
+              />
+              <label for="form-give-pet-get-along-children">Children</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="font-semibold">Any note about your pet:</label>
+
+            <textarea
+              class="p-0 block w-full bg-white"
+              rows="5"
+              id="form-give-pet-comment"
+              placeholder="allergies, behaviors, anything important"
+              name="form-give-pet-comment"
+              required
+            >
+            </textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="block font-semibold">Owner's Name:</label>
+            <label class="inline p-0" for="form-give-owner-fname">First:</label>
+            <input
+              type="text"
+              class="p-0"
+              id="form-give-owner-fname"
+              name="form-give-owner-fname"
+              placeholder="Jane"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
+            />
+
+            <label class="inline p-0" for="form-give-owner-lname">Last:</label>
+
+            <input
+              type="text"
+              class="p-0"
+              id="form-give-owner-lname"
+              name="form-give-owner-lname"
+              placeholder="Doe"
+              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="block font-semibold">Owner's Email:</label>
+            <input
+              type="email"
+              class="p-0"
+              id="givePet-email"
+              name="form-give-owner-email"
+              placeholder="email@gmail.com"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="cursor-pointer border-1 rounded-md px-5 py-2 text-center mr-2 bg-orange-500 text-white"
+          >
+            Submit
+          </button>
+          <button
+            type="reset"
+            class="cursor-pointer border-1 rounded-md px-5 py-2 text-center bg-white"
+          >
+            Clear
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <%- include('./templates/footer'); %>
+
+    <script type="module" src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  </body>
+</html>

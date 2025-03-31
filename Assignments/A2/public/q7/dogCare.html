@@ -25,14 +25,16 @@
   <!-- As I have already designed responsive website in CSS before, I'm opting to learn Tailwind CSS, and hence exploring Flowbite templates -->
   <body class="bg-orange-100">
     <nav
-      class="fixed top-0 z-50 w-full bg-white dark:bg-orange-700/85 backdrop-blur-md"
+      class="fixed top-0 z-50 w-full bg-orange-700/85 dark:bg-orange-700/85 backdrop-blur-md"
     >
-      <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
+      <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-orange-300">
         <div class="bg-orange-300 h-1 progress-bar"></div>
       </div>
       <div class="px-3 py-2 lg:px-5 lg:pl-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center justify-start rtl:justify-end">
+        <div class="flex items-center">
+          <div
+            class="flex items-center justify-between rtl:justify-between w-full"
+          >
             <button
               data-drawer-target="logo-sidebar"
               data-drawer-toggle="logo-sidebar"
@@ -62,15 +64,15 @@
                 alt="PawsVille Logo"
               />
               <span
-                class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white righteous-regular"
+                class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white righteous-regular"
                 >PawsVille</span
               >
             </a>
+            <span class="time text-orange-100 nunito-sans-regular"></span>
           </div>
         </div>
       </div>
     </nav>
-
     <aside
       id="logo-sidebar"
       class="fixed top-0 left-0 z-40 w-64 sm:w-50 xl:w-70 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-orange-50 dark:border-orange-200"
@@ -291,9 +293,6 @@
       <div
         class="p-4 border-gray-200 min-h-screen border-dashed rounded-lg dark:border-gray-700 mt-14"
       >
-        <header>
-          <p class="time text-slate-700 nunito-sans-regular"></p>
-        </header>
         <h1 class="h1-style">Woof Care</h1>
         <h3 class="h3-style">
           Find trustworthy resources on how to take care of your woof!

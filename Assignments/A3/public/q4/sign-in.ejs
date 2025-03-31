@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PawsVille Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="output.css" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://img.freepik.com/free-vector/pet-logo-design-paw-vector-animal-shop-business_53876-136741.jpg?t=st=1738955431~exp=1738959031~hmac=5c28fcd03f680b62373646de289ad7d20435837a946947eee8ae3384ae07ba6d&w=826"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Londrina+Solid:wght@100;300;400;900&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <!-- As I have already designed responsive website in CSS before, I'm opting to learn Tailwind CSS, and hence exploring Flowbite templates -->
+  <body class="bg-orange-100">
+    <%- include('./templates/header'); %> <%- include('./templates/aside'); %>
+    <div class="sm:ml-50 xl:ml-70 p-5">
+      <div
+        class="p-4 border-gray-200 min-h-screen border-dashed rounded-lg dark:border-gray-700 mt-14"
+      >
+        <header>
+          <p class="time text-slate-700 nunito-sans-regular"></p>
+        </header>
+        <h1
+          class="text-3xl sm:text-6xl lg:text-8xl righteous-regular text-orange-400"
+        >
+          Signin to PawsVille
+        </h1>
+        <form
+          id="sign-in-form"
+          class="border-1 border-orange-200 shadow-sm rounded-md bg-orange-50 text-orange-600 p-5 md:p-10 [&>*]:mb-2"
+        >
+          <label for="username" class="block">Username</label>
+          <input
+            type="text"
+            name="username"
+            pattern="^[A-Za-z0-9]+$"
+            required
+          />
+
+          <label for="password" class="block">Password</label>
+          <input
+            type="text"
+            name="password"
+            pattern="^[A-Za-z0-9]+$"
+            minlength="4"
+            required
+          />
+          <button
+            type="submit"
+            class="block cursor-pointer border-1 rounded-md px-5 py-2 text-center my-2 bg-orange-500 text-white"
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <%- include('./templates/footer'); %>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
