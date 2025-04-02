@@ -93,6 +93,7 @@ app.get("/data", (req, res) => {
       "utf8"
     );
     const parsedJSON = JSON.parse(jsonData);
+
     res.status(200).json({
       success: true,
       message: "Successful pet retrieval",

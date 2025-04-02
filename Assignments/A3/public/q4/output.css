@@ -2721,6 +2721,12 @@ html {
   .bg-amber-50 {
     background-color: var(--color-amber-50);
   }
+  .bg-amber-100 {
+    background-color: var(--color-amber-100);
+  }
+  .bg-amber-200 {
+    background-color: var(--color-amber-200);
+  }
   .bg-blue-50 {
     background-color: var(--color-blue-50);
   }
@@ -2849,6 +2855,9 @@ html {
   }
   .bg-orange-100 {
     background-color: var(--color-orange-100);
+  }
+  .bg-orange-200 {
+    background-color: var(--color-orange-200);
   }
   .bg-orange-300 {
     background-color: var(--color-orange-300);
@@ -2981,6 +2990,9 @@ html {
   }
   .bg-teal-500 {
     background-color: var(--color-teal-500);
+  }
+  .bg-teal-600 {
+    background-color: var(--color-teal-600);
   }
   .bg-transparent {
     background-color: transparent;
@@ -5215,6 +5227,11 @@ html {
   .dark\:bg-orange-600\/85 {
     @media (prefers-color-scheme: dark) {
       background-color: color-mix(in oklab, var(--color-orange-600) 85%, transparent);
+    }
+  }
+  .dark\:bg-orange-700 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-orange-700);
     }
   }
   .dark\:bg-orange-700\/85 {

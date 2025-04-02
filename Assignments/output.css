@@ -2715,12 +2715,6 @@ html {
   .bg-amber-50 {
     background-color: var(--color-amber-50);
   }
-  .bg-amber-100 {
-    background-color: var(--color-amber-100);
-  }
-  .bg-amber-200 {
-    background-color: var(--color-amber-200);
-  }
   .bg-blue-50 {
     background-color: var(--color-blue-50);
   }
@@ -2847,9 +2841,6 @@ html {
   .bg-orange-100 {
     background-color: var(--color-orange-100);
   }
-  .bg-orange-200 {
-    background-color: var(--color-orange-200);
-  }
   .bg-orange-300 {
     background-color: var(--color-orange-300);
   }
@@ -2975,9 +2966,6 @@ html {
   }
   .bg-teal-500 {
     background-color: var(--color-teal-500);
-  }
-  .bg-teal-600 {
-    background-color: var(--color-teal-600);
   }
   .bg-transparent {
     background-color: transparent;
@@ -4486,10 +4474,6 @@ html {
   .transition-normal {
     transition-behavior: normal;
   }
-  .duration-75 {
-    --tw-duration: 75ms;
-    transition-duration: 75ms;
-  }
   .duration-200 {
     --tw-duration: 200ms;
     transition-duration: 200ms;
@@ -4501,6 +4485,10 @@ html {
   .duration-700 {
     --tw-duration: 700ms;
     transition-duration: 700ms;
+  }
+  .duration-75 {
+    --tw-duration: 75ms;
+    transition-duration: 75ms;
   }
   .ease-in {
     --tw-ease: var(--ease-in);
@@ -5054,11 +5042,6 @@ html {
   .dark\:bg-orange-600 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-orange-600);
-    }
-  }
-  .dark\:bg-orange-700 {
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--color-orange-700);
     }
   }
   .dark\:bg-orange-700\/85 {
