@@ -4,10 +4,8 @@
 
 // Check if user selects cat or dog to find
 
-// If the form exists, then modify it when it changes
-
-export async function fetchPetData() {
-  const response = await fetch("/data", {
+async function fetchPetData() {
+  const response = await fetch("/get_data", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -17,23 +15,56 @@ export async function fetchPetData() {
     const data = await response.json();
     if (data.success) {
       console.log(data.petData);
+      return data.petData;
     } else {
-      console.error("error", data.message);
+      console.error("Error:", data.message);
     }
   } else {
     console.error("HTTP error:", response.statusText);
   }
 }
 
-function ageRangeVerified() {
-  const minAge = document.querySelector("#min-age");
-  let minAgeValue = minAge.value;
-  const maxAge = document.querySelector("#max-age");
-  let maxAgeValue = maxAge.value;
-  if (minAgeValue > maxAgeValue) {
-    return false;
+function getFriendliness(animal) {
+  if (
+    animal.friendlyTo.children &&
+    animal.friendlyTo.dogs &&
+    animal.friendlyTo.cats
+  ) {
+    return "Friendly";
+  } else {
+    let dislikeStr = "";
+    if (!animal.friendlyTo.children) {
+      dislikeStr += (!dislikeStr ? "" : ", ") + "children";
+    }
+    if (!animal.friendlyTo.dogs) {
+      dislikeStr += (!dislikeStr ? "" : ", ") + "dogs";
+    }
+    if (!animal.friendlyTo.cats) {
+      dislikeStr += (!dislikeStr ? "" : ", ") + "cats";
+    }
+    console.log("worked");
+    return `Dislike ${dislikeStr}`;
   }
-  return true;
+}
+function initializePetFriendliness(samePetArr) {
+  samePetArr.forEach((pet) => {
+    pet.friendliness = getFriendliness(pet); //
+  });
+}
+
+export function allBreedNames(arr) {
+  let breedSet = new Set();
+  for (animal in arr) {
+    namesSet.add(animal.breed);
+  }
+  return breedSet;
+}
+// FIND PET FUNCTIONS
+
+function ageRangeVerified() {
+  const minAge = Number(document.querySelector("#min-age").value);
+  const maxAge = Number(document.querySelector("#max-age").value);
+  return minAge < maxAge ? true : false;
 }
 
 function listenCatRadio() {
@@ -62,19 +93,56 @@ function listenDogRadio() {
     }
   });
 }
-function listenSubmitForm() {
+function listenSubmitForm(pets) {
   const findPetForm = document.getElementById("find-pet-form");
-  findPetForm.addEventListener("submit", function (event) {
+  findPetForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
     if (!ageRangeVerified()) {
-      alert("Min age value must be lower than max age value");
-      event.preventDefault();
+      alert("Max age must be above min age input");
     } else {
-      // event.preventDefault();
-      // fetch('./', {
-      // }
-      // )
+      const userProfileBtn = document.querySelector("#user-profile-header-btn");
+
+      // if user is not logged in
+      if (userProfileBtn.innerHTML === "") {
+        alert("Please log in to use the browse feature!");
+        return;
+      }
+
+      const formData = new FormData(this);
+      const params = new URLSearchParams(formData).toString();
+      console.log(params);
+
+      // updates the URL but doesn't reload the page
+      // window.history.pushState({}, "", `/browse?${params}`);
+      const response = await fetch(`/browse_result?${params}`, {
+        method: "GET",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          console.log(data);
+          initializePetData(data.petData);
+          renderPetsForms(data.petData);
+        } else {
+          console.log("data not found...");
+        }
+      } else {
+        console.error("Error fetching pet data:", response.statusText);
+      }
     }
   });
+}
+
+function initializePetData(pets) {
+  for (const animalType in pets) {
+    if (pets.hasOwnProperty(animalType)) {
+      const animalArr = pets[animalType];
+
+      initializePetFriendliness(animalArr);
+      updateAnimalFormOptions(animalType, animalArr);
+    }
+  }
 }
 // function matchingProfiles(profile){
 //   if(profile.petType ==  'Dog'){
@@ -82,20 +150,14 @@ function listenSubmitForm() {
 //   }
 // }
 
-function renderPetsForms(profile) {
+function renderPetsForms(pets) {
   const browseContainer = document.querySelector(".browse-pets-container");
+  browseContainer.innerHTML = "";
+  // make new array for each pet
 
-  // let petsFlat = pets.flat();
-  let allPets = [];
-  for (let animalType in pets) {
-    if (Object.prototype.hasOwnProperty.call(pets, animalType)) {
-      allPets.push(...pets[animalType]);
-    }
-  }
-  console.log(allPets);
-
+  const allPets = Object.values(pets).flat();
+  // m
   for (let animal of allPets) {
-    console.log(animal);
     const petDiv = document.createElement("div");
     petDiv.innerHTML = `<figure
                   class="rounded-t-lg overflow-hidden flex items-center aspect-[1/1]"
@@ -146,19 +208,18 @@ function renderPetsForms(profile) {
   }
 }
 
-function updateAnimalFormOptions(animalType) {
-  let animalArr;
-  if (animalType == "dog") {
-    animalArr = pets.dog;
-  } else if (animalType == "cat") {
-    animalArr = pets.cat;
-  }
+function updateAnimalFormOptions(animalType, animalArr) {
+  // if (animalType == "dog") {
+  //   animalArr = pets.dog;
+  // } else if (animalType == "cat") {
+  //   animalArr = pets.cat;
+  // }
   const animalSelectForm = document.querySelector(
     `#${animalType}-breed-select`
   );
   const breedsSet = new Set();
   const breedsArr = [];
-  console.log(breedsSet);
+
   for (const animal of animalArr) {
     if (!breedsSet.has(animal.breed)) {
       breedsArr.push(animal.breed);
@@ -166,7 +227,6 @@ function updateAnimalFormOptions(animalType) {
     }
   }
   const sortedBreedsArr = Array.from(breedsArr).sort();
-  // breeds array
 
   const optionAll = document.createElement("option");
   optionAll.value = `all-${animalType}`;
@@ -180,12 +240,14 @@ function updateAnimalFormOptions(animalType) {
   }
 }
 
-export function initializeFindPetPage() {
+export async function initializeFindPetPage() {
+  let pets = await fetchPetData();
+
+  initializePetData(pets);
+
   listenCatRadio();
   listenDogRadio();
-  listenSubmitForm();
+  listenSubmitForm(pets);
 
-  updateAnimalFormOptions("dog");
-  updateAnimalFormOptions("cat");
-  renderPetsForms();
+  renderPetsForms(pets);
 }

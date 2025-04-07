@@ -7,24 +7,23 @@ const PORT = 3200 || process.env.port;
 
 app.use(
   session({
-    secret: "your-secret-key", // Secret key used to sign the session ID cookie
-    resave: false, // Don't save session if unmodified
+    name: "cookie",
+    resave: false,
+    secret: "12345678", // Secret key used to sign the session ID cookie
     saveUninitialized: true, // Save a session that is new but not modified
-    cookie: { secure: false },
+    cookie: { secure: false, httpOnly: false },
   })
 );
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "./views")); // set the current views directory
-
-// Middleware to check if user is logged in
+// Middleware to make new username variable for ejs templates to render
 app.use((req, res, next) => {
   if (req.session.username) {
     res.locals.username = req.session.username; // Make username available in all templates
   }
   next();
 });
-
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "./views")); // set the current views directory
 // middleware used to parse incoming requests with application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 // middleware to parse json files
@@ -54,46 +53,94 @@ app.get("/browse_result", (req, res) => {
   // Access query parameters using req.query
   const type = req.query.type; // "dog"
   const catBreed = req.query["cat-breed"]; // "all-cat"
-  const dogBreed = req.query["dog-breed-select"]; // "all-dog"
+  const dogBreed = req.query["dog-breed"]; // "all-dog"
   const minAge = req.query["min-age"]; // "1"
   const maxAge = req.query["max-age"]; // "2"
   const gender = req.query["gender"]; // "male"
-  const getAlong = req.query["get-along"]; // "on"
+  const friendlyTo = {
+    dogs: req.query["friendly-dogs"],
+    cats: req.query["friendly-cats"],
+    children: req.query["friendly-children"],
+  }; // "on"
   // Log the parameters to the console or use them in your logic
-  const response = {
+  const paramList = {
     type: type,
     catBreed: catBreed,
     dogBreed: dogBreed,
     minAge: minAge,
     maxAge: maxAge,
     gender: gender,
-    getAlong: getAlong,
+    friendlyTo: friendlyTo,
   };
-  console.log({
-    type,
-    catBreed,
-    dogBreed,
-    minAge,
-    maxAge,
-    gender,
-    getAlong,
-  });
-  res.status(200).json({ message: "Successful search", data: response });
-});
-
-app.get("/browse", (req, res) => {
-  // const page = req.params.page;
-  console.log(req.session.username);
-  res.render("browsePets", { username: req.session.username });
-});
-app.get("/data", (req, res) => {
+  // console.log({
+  //   type,
+  //   catBreed,
+  //   dogBreed,
+  //   minAge,
+  //   maxAge,
+  //   gender,
+  //   friendlyTo,
+  // });
   try {
     const jsonData = fs.readFileSync(
       path.join(__dirname, "./data/pets.json"),
       "utf8"
     );
     const parsedJSON = JSON.parse(jsonData);
+    const filteredData = { [type]: filterData(parsedJSON, paramList) };
 
+    console.log("the filtered data: " + filteredData);
+    res.status(200).json({
+      success: true,
+      message: "Successful pet retrieval",
+      petData: filteredData,
+    });
+  } catch (err) {
+    console.error("Cant retrieve pet data: ");
+    res.status(400).json({ success: false, message: "FAILED pet retrieval" });
+  }
+  // res.status(200).json({ message: "Successful search", petData: petData });
+});
+function filterData(petsData, params) {
+  console.log(params);
+  if (petsData.hasOwnProperty(params.type)) {
+    const animalArr = petsData[params.type];
+    if (params.type == "dog") {
+      params.breed = params.dogBreed;
+    } else if (params.type == "cat") {
+      params.breed = params.catBreed;
+    }
+
+    return animalArr.filter((animal) => {
+      return (
+        (animal.breed === params.breed ||
+          params.breed === `all-${params.type}`) &&
+        params.minAge <= animal.age &&
+        params.maxAge >= animal.age &&
+        (params.gender === animal.gender || params.gender === "either") &&
+        ((params.friendlyTo.children && animal.friendlyTo.children) ||
+          params.friendlyTo.children === undefined) &&
+        ((params.friendlyTo.dogs && animal.friendlyTo.dogs) ||
+          params.friendlyTo.dogs === undefined) &&
+        ((params.friendlyTo.cats && animal.friendlyTo.cats) ||
+          params.friendlyTo.cats === undefined)
+      );
+    });
+  }
+}
+
+app.get("/browse", (req, res) => {
+  // const page = req.params.page;
+  // console.log(req.session.username);
+  res.render("browsePets", { username: req.session.username });
+});
+app.get("/get_data", (req, res) => {
+  try {
+    const jsonData = fs.readFileSync(
+      path.join(__dirname, "./data/pets.json"),
+      "utf8"
+    );
+    const parsedJSON = JSON.parse(jsonData);
     res.status(200).json({
       success: true,
       message: "Successful pet retrieval",
@@ -130,7 +177,96 @@ app.get("/:page", (req, res) => {
   console.log(req.session.username);
   res.render(page, { username: req.session.username }); // Automatically renders 'views/<page>.ejs'
 });
+app.post("/givePet", (req, res) => {
+  const {
+    "pet-name": name,
+    type,
+    breed,
+    "min-age": minAgeStr,
+    "max-age": maxAgeStr,
+    gender,
+    "friendly-dogs": friendlyDogs,
+    "friendly-cats": friendlyCats,
+    "friendly-children": friendlyChildren,
+    comment,
+    "img-url": img_url,
+    "owner-fname": ownerFname,
+    "owner-lname": ownerLname,
+    "owner-email": ownerEmail,
+  } = req.body;
+  const minAge = Number(minAgeStr);
+  const maxAge = Number(maxAgeStr);
+  // const newPetFull = {
+  //   name: name,
+  //   breed: breed,
+  //   minAge: minAge,
+  //   maxAge: maxAge,
+  //   gender: gender,
+  //   comment: comment,
+  //   friendlyTo: {
+  //     dogs: friendlyDogs,
+  //     cats: friendlyCats,
+  //     children: friendlyChildren,
+  //   },
+  //   img_url: img_url,
+  //   ownerFname: ownerFname,
+  //   ownerLname: ownerLname,
+  //   ownerEmail: ownerEmail,
+  // };
 
+  const newPet = {
+    name: name,
+    type: capitalizeStr(type),
+    breed: breed,
+    gender: gender,
+    minAge: minAge,
+    maxAge: maxAge,
+    age: Math.round((maxAge - minAge) / 2),
+    friendlyTo: {
+      children: friendlyChildren,
+      dogs: friendlyDogs,
+      cats: friendlyCats,
+    },
+    comment: comment,
+    img_url: img_url,
+    ownerFname: ownerFname,
+    ownerLname: ownerLname,
+    ownerEmail: ownerEmail,
+  };
+  console.log(newPet);
+
+  try {
+    const jsonData = fs.readFileSync(
+      path.join(__dirname, "./data/pets.json"),
+      "utf8"
+    );
+    const parsedJSON = JSON.parse(jsonData);
+    // console.log(parsedJSON);
+    if (parsedJSON.hasOwnProperty(type)) {
+      parsedJSON[type].push(newPet);
+    }
+    console.log(parsedJSON.cat);
+    const newStringifiedData = JSON.stringify(parsedJSON, null, 2); // `null, 2` for pretty-printing the JSON
+
+    fs.writeFileSync(
+      path.join(__dirname, "./data/pets.json"),
+      newStringifiedData,
+      "utf8"
+    );
+    res.status(200).json({ success: true, message: "Login successful" });
+  } catch (err) {
+    console.error("Cant retrieve pet data: ");
+    res.status(400).json({ success: false, message: "FAILED pet retrieval" });
+  }
+});
+function capitalizeStr(str) {
+  if (str.length > 0) {
+    str = str[0].toUpperCase() + str.slice(1);
+  }
+  return str;
+}
+
+// in between post request for user creating an account
 app.post("/creating-account", (req, res) => {
   const { username, password } = req.body;
   // console.log(username, password);
@@ -146,9 +282,9 @@ app.post("/creating-account", (req, res) => {
     // if has username
     if (parsedMap.has(username)) {
       console.log("username is taken. nothhing happened");
-      res
-        .status(400)
-        .json({ success: false, message: "Invalid username or password" });
+      res.status(409).json({
+        error: "Username is taken. Please choose another username.",
+      });
       return;
     } else {
       parsedMap.set(username, password);
@@ -207,177 +343,3 @@ app.listen(PORT, (err) => {
   if (err) console.error("error is:" + err);
   console.log(`Server is running on localhost:${PORT}`);
 });
-
-let dogs = [
-  {
-    name: "Tumme",
-    type: "Dog",
-    breed: "Cocker Spaniel",
-    gender: "Male",
-    age: 2,
-
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Likes to get his tummy rubbed",
-    img_url:
-      "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Amaretto",
-    type: "Dog",
-    breed: "Poodle",
-    gender: "Male",
-    age: 3,
-
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Ines's dog, not for adoption",
-    img_url: "../imgs/amaretto.jpg",
-  },
-  {
-    name: "Rat",
-    type: "Dog",
-    breed: "French Bulldog",
-    gender: "Female",
-    age: 3,
-
-    friendlyTo: {
-      children: true,
-      dogs: false,
-      cats: true,
-    },
-    comment: "Looks like a rat sometimes",
-    img_url:
-      "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Bard",
-    type: "Dog",
-    breed: "Golden Retriever",
-    gender: "Female",
-    age: 5,
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Soft, likes to cuddle",
-    img_url:
-      "https://images.unsplash.com/photo-1510771463146-e89e6e86560e?q=80&w=1362&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Ruff Ruff",
-    type: "Dog",
-    breed: "Yorkshire Terrier",
-    gender: "Female",
-    age: 1,
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Small but dangerous",
-    img_url:
-      "https://images.unsplash.com/photo-1583511655826-05700d52f4d9?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
-  },
-  {
-    name: "Bestie",
-    type: "Dog",
-    breed: "Samoyed",
-    gender: "Female",
-    age: 5,
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Always a little extra",
-    img_url:
-      "https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
-
-let cats = [
-  {
-    name: "Bluff",
-    type: "Cat",
-    breed: "American Shorthair",
-    gender: "Female",
-    age: 3,
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Hiss 24/7",
-    img_url:
-      "https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
-  },
-  {
-    name: "Headlights",
-    type: "Cat",
-    breed: "Persian",
-    gender: "Female",
-    age: 6,
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Eyes Wide Heads Empty",
-    img_url:
-      "https://images.unsplash.com/photo-1548366086-7f1b76106622?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
-  },
-  {
-    name: "Yawny",
-    type: "Cat",
-    breed: "American Shorthair",
-    gender: "Male",
-    age: 1,
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: false,
-    },
-    comment: "Eyes Wide Heads Empty",
-    img_url:
-      "https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
-  },
-  {
-    name: "Tartarus",
-    type: "Cat",
-    breed: "Abyssus",
-    gender: "Male",
-    age: 4,
-    friendlyTo: {
-      children: true,
-      dogs: false,
-      cats: false,
-    },
-    comment: "Got his name from the dark abyss of Tartarus",
-    img_url:
-      "https://images.unsplash.com/photo-1571566882372-1598d88abd90?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
-  },
-  {
-    name: "Squint",
-    type: "Cat",
-    breed: "Persian",
-    gender: "Male",
-    age: 7,
-    friendlyTo: {
-      children: true,
-      dogs: true,
-      cats: true,
-    },
-    comment: "Looks grumpy but is actually quite nice",
-    img_url:
-      "https://images.unsplash.com/photo-1513245543132-31f507417b26?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
-let pets = { dog: dogs, cat: cats };

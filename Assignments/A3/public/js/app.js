@@ -1,29 +1,33 @@
 import { updateUI, listenLogout } from "./account.js";
 
+if (window.location.pathname == "/") {
+  const cookies = document.cookie;
+}
+
 if (window.location.pathname == "/browse") {
   import("./findPet.js")
     .then((module) => {
-      console.log("Module loaded:", module);
-      module.fetchPetData();
-      // module.initializeFindPetPage();
+      // console.log("Module loaded:", module);
+      // module.fetchPetData();
+      module.initializeFindPetPage();
     })
     .catch((error) => {
       console.error("Error loading module:", error);
     });
 }
 
-if (window.location.pathname == "/givePet") {
-  // import("./findPet.js")
-  //   .then((module) => {
-  //     console.log("Module loaded:", module);
-  //     module.initializeFindPetPage();
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error loading module:", error);
-  //   });
+if (window.location.pathname === "/givePet") {
+  import("./givePet.js")
+    .then((module) => {
+      console.log("Module loaded:", module);
+      module.intializeGivePetPage();
+    })
+    .catch((error) => {
+      console.error("Error loading module:", error);
+    });
 }
 
-if (window.location.pathname == "/sign-up") {
+if (window.location.pathname === "/sign-up") {
   import("./account.js")
     .then((module) => {
       console.log("Module loaded:", module);

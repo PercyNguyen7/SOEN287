@@ -4,7 +4,6 @@
 
   <body class="bg-orange-100">
     <%- include('./templates/nav'); %> <%- include('./templates/aside'); %>
-
     <div class="sm:ml-50 xl:ml-70 p-5">
       <div
         class="p-4 border-gray-200 min-h-screen border-dashed rounded-lg dark:border-gray-700 mt-14"
@@ -16,59 +15,52 @@
         </h3>
         <form
           class="border-1 border-orange-200 rounded-md bg-orange-50 text-orange-600 p-5 my-3 md:p-10 [&>*]:mb-4"
+          id="give-pet-form"
         >
           <div class="form-group">
-            <label class="inline font-semibold" for="form-give-pet-name"
-              >Pet Name:</label
-            >
+            <label class="inline font-semibold" for="pet-name">Pet Name:</label>
 
             <input
               type="text"
-              id="form-give-pet-name"
-              name="form-give-pet-name"
+              id="pet-name"
+              name="pet-name"
               placeholder="Charlie"
               class="p-0"
               maxlength="20"
-              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              pattern="^[A-Za-z ]+$"
               required
             />
           </div>
           <div class="form-group">
-            <label class="inline font-semibold" for="form-give-pet-type-cat"
+            <label class="inline font-semibold" for="pet-type-cat"
               >Pet Type:</label
             >
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="form-give-pet-type-cat"
-                name="form-give-pet-type"
+                id="pet-type-cat"
+                name="type"
                 value="cat"
                 required
               />
-              <label for="form-give-pet-type-cat">Cat</label>
+              <label for="pet-type-cat">Cat</label>
             </div>
             <div class="inline pl-2">
-              <input
-                type="radio"
-                id="form-give-pet-type-dog"
-                name="form-give-pet-type"
-                value="dog"
-              />
-              <label for="form-give-pet-type-dog">Dog</label>
+              <input type="radio" id="pet-type-dog" name="type" value="dog" />
+              <label for="pet-type-dog">Dog</label>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="form-give-pet-breed" class="font-semibold"
-              >Your pet breed:</label
-            >
+            <label for="pet-breed" class="font-semibold">Your pet breed:</label>
             <input
               type="text"
-              id="form-give-pet-breed"
+              id="pet-breed"
+              name="breed"
               class="p-0"
-              placeholder="golden retriever"
+              placeholder="Golden Retriever"
               maxlength="22"
-              onkeydown="return /^[a-z\s]$/i.test(event.key) || event.key === 'Backspace' || event.key ==='Tab'"
+              pattern="^[A-Za-z ]+$"
               required
             />
           </div>
@@ -76,11 +68,11 @@
           <div class="form-group">
             <label class="inline font-semibold">Age Range (0-20):</label>
             <div class="my-2 inline">
-              <label for="form-give-pet-min-age">Min </label>
+              <label for="min-age">Min </label>
               <input
                 type="number"
-                name="form-give-pet-min-age"
-                id="form-give-pet-min-age"
+                name="min-age"
+                id="min-age"
                 placeholder="1"
                 min="0"
                 max="20"
@@ -89,11 +81,11 @@
               />
             </div>
             <div class="my-2 inline">
-              <label for="form-give-pet-max-age">Max </label>
+              <label for="max-age">Max </label>
               <input
                 type="number"
-                name="form-give-pet-max-age"
-                id="form-give-pet-max-age"
+                name="max-age"
+                id="max-age"
                 min="0"
                 placeholder="20"
                 max="20"
@@ -104,94 +96,86 @@
           </div>
 
           <div class="form-group">
-            <label class="font-semibold" for="form-give-pet-gender-male"
-              >Gender:</label
-            >
+            <label class="font-semibold" for="pet-gender-male">Gender:</label>
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="form-give-pet-gender-male"
-                name="form-give-pet-gender"
-                value="male"
+                id="pet-gender-male"
+                name="gender"
+                value="Male"
               />
-              <label for="form-give-pet-gender-male">Male</label>
+              <label for="pet-gender-male">Male</label>
             </div>
             <div class="inline pl-2">
               <input
                 type="radio"
-                id="form-give-pet-gender-female"
-                name="form-give-pet-gender"
-                value="female"
+                id="pet-gender-female"
+                name="gender"
+                value="Female"
               />
-              <label for="form-give-pet-gender-female">Female</label>
+              <label for="pet-gender-female">Female</label>
             </div>
           </div>
           <div class="form-group">
             <p class="font-semibold">Get along with</p>
 
             <div>
-              <input
-                type="checkbox"
-                id="form-give-pet-get-along-dogs"
-                name="form-give-pet-get-along"
-              />
-              <label for="form-give-pet-get-along-dogs">Dogs</label>
+              <input type="checkbox" id="friendly-dogs" name="friendly-dogs" />
+              <label for="friendly-dogs">Dogs</label>
             </div>
 
             <div>
-              <input
-                type="checkbox"
-                id="form-give-pet-get-along-cats"
-                name="form-give-pet-get-along"
-              />
-              <label for="form-give-pet-get-along-cats">Cats</label>
+              <input type="checkbox" id="friendly-cats" name="friendly-cats" />
+              <label for="friendly-cats">Cats</label>
             </div>
             <div>
               <input
                 type="checkbox"
-                id="form-give-pet-get-along-children"
-                name="form-give-pet-get-along"
+                id="friendly-children"
+                name="friendly-children"
               />
-              <label for="form-give-pet-get-along-children">Children</label>
+              <label for="friendly-children">Children</label>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="font-semibold">Any note about your pet:</label>
+            <label class="font-semibold" for="comment"
+              >Any note about your pet:</label
+            >
 
             <textarea
-              class="p-0 block w-full bg-white"
+              class="block w-full bg-white"
               rows="5"
-              id="form-give-pet-comment"
+              id="comment"
               placeholder="allergies, behaviors, anything important"
-              name="form-give-pet-comment"
-              required
-            >
-            </textarea>
+              name="comment"
+            ></textarea>
           </div>
-
+          <div class="form-group">
+            <label class="font-semibold" for="img-url">Pet Image URL:</label>
+            <input type="text" name="img-url" id="img-url" required />
+          </div>
           <div class="form-group">
             <label class="block font-semibold">Owner's Name:</label>
-            <label class="inline p-0" for="form-give-owner-fname">First:</label>
+            <label class="inline p-0" for="owner-fname">First:</label>
             <input
               type="text"
               class="p-0"
-              id="form-give-owner-fname"
-              name="form-give-owner-fname"
+              id="owner-fname"
+              name="owner-fname"
               placeholder="Jane"
-              pattern="^[A-Za-z]+$"
+              pattern="^[A-Za-z ]+$"
               required
             />
 
-            <label class="inline p-0" for="form-give-owner-lname">Last:</label>
-
+            <label class="inline p-0" for="owner-lname">Last:</label>
             <input
               type="text"
               class="p-0"
-              id="form-give-owner-lname"
-              name="form-give-owner-lname"
+              id="owner-lname"
+              name="owner-lname"
               placeholder="Doe"
-              pattern="^[A-Za-z]+$"
+              pattern="^[A-Za-z ]+$"
               required
             />
           </div>
@@ -201,7 +185,7 @@
               type="email"
               class="p-0"
               id="givePet-email"
-              name="form-give-owner-email"
+              name="owner-email"
               placeholder="email@gmail.com"
               required
             />

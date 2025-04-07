@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('./templates/header' , {title: 'Browse Pets'}); %>
-  <!-- As I have already designed responsive website in CSS before, I'm opting to learn Tailwind CSS, and hence exploring Flowbite templates -->
+
   <body class="bg-orange-100">
     <%- include('./templates/nav'); %> <%- include('./templates/aside'); %>
 
@@ -52,7 +52,7 @@
               >Choose a dog breed:</label
             >
             <select
-              name="dog-breed-select"
+              name="dog-breed"
               id="dog-breed-select"
               class="p-1 bg-white lg:w-60"
             ></select>
@@ -95,7 +95,7 @@
                 type="radio"
                 id="gender-male"
                 name="gender"
-                value="male"
+                value="Male"
                 required
               />
               <label for="gender-male">Male</label>
@@ -105,7 +105,7 @@
                 type="radio"
                 id="gender-female"
                 name="gender"
-                value="female"
+                value="Female"
               />
               <label for="gender-female">Female</label>
             </div>

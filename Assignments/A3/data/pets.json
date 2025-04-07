@@ -63,7 +63,7 @@
       "gender": "Female",
       "age": 1,
       "friendlyTo": {
-        "children": true,
+        "children": false,
         "dogs": true,
         "cats": true
       },
@@ -155,6 +155,39 @@
       },
       "comment": "Looks grumpy but is actually quite nice",
       "img_url": "https://images.unsplash.com/photo-1513245543132-31f507417b26?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "name": "Charlie",
+      "type": "Cat",
+      "breed": "Siamese",
+      "gender": "Male",
+      "age": 5,
+      "friendlyTo": {
+        "children": "on",
+        "dogs": "on",
+        "cats": "on"
+      },
+      "comment": "Funny looking",
+      "img_url": "https://images.unsplash.com/photo-1568152950566-c1bf43f4ab28?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "name": "Googly",
+      "type": "Cat",
+      "breed": "American Shorthair",
+      "gender": "Male",
+      "minAge": 1,
+      "maxAge": 5,
+      "age": 3,
+      "friendlyTo": {
+        "children": "on",
+        "dogs": "on",
+        "cats": "on"
+      },
+      "comment": "Very tiny being",
+      "img_url": "https://images.unsplash.com/photo-1567270671170-fdc10a5bf831?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "ownerFname": "Love",
+      "ownerLname": "Ya",
+      "ownerEmail": "123@gmail.com"
     }
   ]
 }

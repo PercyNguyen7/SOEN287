@@ -2,22 +2,36 @@
 // import { ageRangeVerified } from "./findPet.js";
 
 export function intializeGivePetPage() {
-  listenAgeForm();
+  listenSubmitForm();
 }
-function listenAgeForm() {
-  const numberInputs = document.querySelectorAll(".number-inputs");
-  numberInputs.forEach((input) => {
-    input.addEventListener("input", function (event) {
-      let maxValue = parseInt(event.target.max, 10);
-      let minValue = parseInt(event.target.min, 10);
-      let currentValue = parseInt(event.target.value, 10);
+function ageRangeVerified() {
+  const minAge = Number(document.querySelector("#min-age").value);
+  const maxAge = Number(document.querySelector("#max-age").value);
+  return minAge < maxAge ? true : false;
+}
+function listenSubmitForm() {
+  const form = document.querySelector("#give-pet-form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!ageRangeVerified()) {
+      alert("Max age must be above min age input.");
+      return;
+    }
+    const formData = new FormData(form);
+    const formObject = Object.fromEntries(formData.entries());
 
-      if (currentValue > maxValue) {
-        event.target.value = maxValue; // Reset to max value if exceeded
-      }
-      if (currentValue < minValue) {
-        event.target.value = minValue; // Reset to min value if exceeded
-      }
+    const response = fetch("/givePet", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formObject),
     });
+    if (response.ok) {
+      const data = (await response).json();
+      if (data.success) {
+        alert("data sent!");
+      }
+    }
   });
 }

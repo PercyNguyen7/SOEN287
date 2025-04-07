@@ -3649,6 +3649,9 @@ html {
   .pb-96 {
     padding-bottom: calc(var(--spacing) * 96);
   }
+  .pl-0 {
+    padding-left: calc(var(--spacing) * 0);
+  }
   .pl-2 {
     padding-left: calc(var(--spacing) * 2);
   }
@@ -5212,6 +5215,11 @@ html {
   .dark\:bg-orange-300 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-orange-300);
+    }
+  }
+  .dark\:bg-orange-400 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-orange-400);
     }
   }
   .dark\:bg-orange-500 {

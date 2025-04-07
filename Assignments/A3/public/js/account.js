@@ -1,4 +1,3 @@
-let user = null;
 export function updateUI() {
   const userProfileBtn = document.querySelector("#user-profile-header-btn");
 
@@ -91,16 +90,15 @@ function listenSignUp() {
           // Redirect the user to the homepage (or another page)
           window.location.href = "/sign-in"; // or '/dashboard', '/profile', etc.
         } else {
-          alert("Sign up failed: " + data.message);
+          alert("Sign up failed: " + data.error);
         }
-      } else {
-        // If response is not okay (e.g., 400 or 500 error), handle the error
-        alert("An error occurred while logging in.");
+      } else if (response.status === 409) {
+        alert("Username already taken, please use another!");
       }
     } catch (error) {
       // Handle network or other errors
       console.error("Error during login:", error);
-      alert("Something went wrong. Please try again later.");
+      alert(error);
     }
   });
 }
@@ -126,8 +124,10 @@ function listenSignIn() {
         const data = await response.json();
         // If successful, redirect to the homepage
         if (data.success) {
+          // user = formObject;
+
           alert(`Welcome back ${formObject.username}`);
-          user = formObject;
+
           // Redirect the user to the homepage (or another page)
           updateUI();
           window.location.href = "/home"; // or '/dashboard', '/profile', etc.
