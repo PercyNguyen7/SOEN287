@@ -221,7 +221,7 @@ app.post("/givePet", (req, res) => {
     gender: gender,
     minAge: minAge,
     maxAge: maxAge,
-    age: Math.round((maxAge - minAge) / 2),
+    age: Math.round((maxAge + minAge) / 2),
     friendlyTo: {
       children: friendlyChildren,
       dogs: friendlyDogs,
@@ -245,7 +245,7 @@ app.post("/givePet", (req, res) => {
     if (parsedJSON.hasOwnProperty(type)) {
       parsedJSON[type].push(newPet);
     }
-    console.log(parsedJSON.cat);
+    // console.log(parsedJSON.cat);
     const newStringifiedData = JSON.stringify(parsedJSON, null, 2); // `null, 2` for pretty-printing the JSON
 
     fs.writeFileSync(
@@ -253,7 +253,9 @@ app.post("/givePet", (req, res) => {
       newStringifiedData,
       "utf8"
     );
-    res.status(200).json({ success: true, message: "Login successful" });
+    res
+      .status(200)
+      .json({ success: true, message: "Pet registered successfully" });
   } catch (err) {
     console.error("Cant retrieve pet data: ");
     res.status(400).json({ success: false, message: "FAILED pet retrieval" });

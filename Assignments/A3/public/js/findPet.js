@@ -100,14 +100,6 @@ function listenSubmitForm(pets) {
     if (!ageRangeVerified()) {
       alert("Max age must be above min age input");
     } else {
-      const userProfileBtn = document.querySelector("#user-profile-header-btn");
-
-      // if user is not logged in
-      if (userProfileBtn.innerHTML === "") {
-        alert("Please log in to use the browse feature!");
-        return;
-      }
-
       const formData = new FormData(this);
       const params = new URLSearchParams(formData).toString();
       console.log(params);

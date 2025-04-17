@@ -137,7 +137,7 @@ function listenSignIn() {
         }
       } else {
         // If response is not okay (e.g., 400 or 500 error), handle the error
-        alert("An error occurred while logging in.");
+        alert("User account and password combination not found");
       }
     } catch (error) {
       // Handle network or other errors

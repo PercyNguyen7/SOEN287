@@ -7,7 +7,7 @@ export function intializeGivePetPage() {
 function ageRangeVerified() {
   const minAge = Number(document.querySelector("#min-age").value);
   const maxAge = Number(document.querySelector("#max-age").value);
-  return minAge < maxAge ? true : false;
+  return minAge <= maxAge ? true : false;
 }
 function listenSubmitForm() {
   const form = document.querySelector("#give-pet-form");
@@ -20,7 +20,7 @@ function listenSubmitForm() {
     const formData = new FormData(form);
     const formObject = Object.fromEntries(formData.entries());
 
-    const response = fetch("/givePet", {
+    const response = await fetch("/givePet", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,9 +28,9 @@ function listenSubmitForm() {
       body: JSON.stringify(formObject),
     });
     if (response.ok) {
-      const data = (await response).json();
+      const data = await response.json();
       if (data.success) {
-        alert("data sent!");
+        alert("Data sent! Check out your pet in the browse pets page!");
       }
     }
   });

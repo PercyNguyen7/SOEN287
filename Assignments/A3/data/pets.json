@@ -83,6 +83,25 @@
       },
       "comment": "Always a little extra",
       "img_url": "https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "name": "Monkey",
+      "type": "Dog",
+      "breed": "Canine",
+      "gender": "Male",
+      "minAge": 1,
+      "maxAge": 8,
+      "age": 4,
+      "friendlyTo": {
+        "children": "on",
+        "dogs": "on",
+        "cats": "on"
+      },
+      "comment": "nothing",
+      "img_url": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "ownerFname": "Jane",
+      "ownerLname": "Doe",
+      "ownerEmail": "idk@gmail.com"
     }
   ],
   "cat": [
@@ -188,6 +207,25 @@
       "ownerFname": "Love",
       "ownerLname": "Ya",
       "ownerEmail": "123@gmail.com"
+    },
+    {
+      "name": "Pikachu",
+      "type": "Cat",
+      "breed": "Pokemon",
+      "gender": "Male",
+      "minAge": 3,
+      "maxAge": 3,
+      "age": 3,
+      "friendlyTo": {
+        "children": "on",
+        "dogs": "on",
+        "cats": "on"
+      },
+      "comment": "",
+      "img_url": "https://images.unsplash.com/photo-1609372332255-611485350f25?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "ownerFname": "Ash",
+      "ownerLname": "Ketchum",
+      "ownerEmail": "ash@gmail.com"
     }
   ]
 }

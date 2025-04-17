@@ -1,5 +1,11 @@
 import { updateUI, listenLogout } from "./account.js";
 
+document.addEventListener("DOMContentLoaded", function () {
+  updateTime();
+  updateUI();
+  listenLogout();
+});
+
 if (window.location.pathname == "/") {
   const cookies = document.cookie;
 }
@@ -17,14 +23,21 @@ if (window.location.pathname == "/browse") {
 }
 
 if (window.location.pathname === "/givePet") {
-  import("./givePet.js")
-    .then((module) => {
-      console.log("Module loaded:", module);
-      module.intializeGivePetPage();
-    })
-    .catch((error) => {
-      console.error("Error loading module:", error);
-    });
+  // if user is not logged in
+  const userProfileBtn = document.querySelector("#user-profile-header-btn");
+  if (userProfileBtn.innerHTML === "") {
+    alert("Please log in before you can use the give pet feature!");
+    window.location.href = "/sign-in";
+  } else {
+    import("./givePet.js")
+      .then((module) => {
+        console.log("Module loaded:", module);
+        module.intializeGivePetPage();
+      })
+      .catch((error) => {
+        console.error("Error loading module:", error);
+      });
+  }
 }
 
 if (window.location.pathname === "/sign-up") {
@@ -48,12 +61,6 @@ if (window.location.pathname == "/sign-in") {
       console.error("Error loading module:", error);
     });
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  updateTime();
-  updateUI();
-  listenLogout();
-});
 
 function updateTime() {
   const timePara = document.querySelector(".time");

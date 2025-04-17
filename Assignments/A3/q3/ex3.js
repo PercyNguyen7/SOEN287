@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "ex3.html"));
 });
 
-app.post("/something", (req, res) => {
+app.post("/post", (req, res) => {
   console.log(req.body);
   const { name1, name2, phone1, phone2 } = req.body;
   res.send(`Results:<br>
@@ -28,7 +28,8 @@ app.post("/something", (req, res) => {
     verifyNumber(phone2) ? "valid" : "invalid"
   }.`);
 });
-console.log(verifyNumber("123-456-7899"));
+// console.log(verifyNumber("123-456-7899"));
+
 function verifyNumber(str) {
   if (str.length != 12) {
     return false;
