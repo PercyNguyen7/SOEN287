@@ -12,7 +12,7 @@ To run q3 from A3 directory, please use command
 To run the pet project (Q4) from A3 directory, please use command  
 `npm run dev`
 
-## Project structure
+## File structure
 
 Ex 1,2,3 source codes can be found in folder q1, q2 and q3.  
 Ex 4 source code is in the current folder (A3).
@@ -39,3 +39,15 @@ Ex 4 source code is in the current folder (A3).
 **views**
 
 - all `ejs files` and templates
+
+## Q4 Change Log
+
+- **Additional Feature**
+
+  - Dynamic Pet Rendering
+    - All new pet submitted on givePet page will immediately be featured on the findPet page. Their breed will also appear on the form for browsing.
+
+- **Minor change**
+
+  - JSON files are used instead of txt file as I wish to incorporate API with this project in the future
+  - sign-in page will not load the givePet page, but redirect you to the homepage instead. However, givePet page is still only accessable once user is logged in.
