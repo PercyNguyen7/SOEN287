@@ -34,7 +34,13 @@
               <label for="cat-radio">Cat</label>
             </div>
             <div class="inline pl-2">
-              <input type="radio" id="dog-radio" name="type" value="dog" />
+              <input
+                type="radio"
+                id="dog-radio"
+                name="type"
+                value="dog"
+                required
+              />
               <label for="dog-radio">Dog</label>
             </div>
           </div>
@@ -70,7 +76,6 @@
                 min="0"
                 max="20"
                 class="py-0 bg-white w-20 number-inputs"
-                required
               />
             </div>
             <div class="my-2 inline">
@@ -83,7 +88,6 @@
                 min="0"
                 max="20"
                 class="py-0 bg-white w-20 number-inputs"
-                required
               />
             </div>
           </div>
@@ -91,13 +95,7 @@
           <div class="form-group">
             <p class="font-semibold inline">Gender:</p>
             <div class="inline pl-2">
-              <input
-                type="radio"
-                id="gender-male"
-                name="gender"
-                value="Male"
-                required
-              />
+              <input type="radio" id="gender-male" name="gender" value="Male" />
               <label for="gender-male">Male</label>
             </div>
             <div class="inline pl-2">

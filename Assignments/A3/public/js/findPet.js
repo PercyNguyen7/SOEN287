@@ -64,7 +64,7 @@ export function allBreedNames(arr) {
 function ageRangeVerified() {
   const minAge = Number(document.querySelector("#min-age").value);
   const maxAge = Number(document.querySelector("#max-age").value);
-  return minAge < maxAge ? true : false;
+  return minAge <= maxAge || minAge == "" || maxAge == "" ? true : false;
 }
 
 function listenCatRadio() {
@@ -136,11 +136,6 @@ function initializePetData(pets) {
     }
   }
 }
-// function matchingProfiles(profile){
-//   if(profile.petType ==  'Dog'){
-
-//   }
-// }
 
 function renderPetsForms(pets) {
   const browseContainer = document.querySelector(".browse-pets-container");
